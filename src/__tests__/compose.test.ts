@@ -3,12 +3,13 @@ import {
   firstStudentName,
   lastNote,
   sanitizeNames,
+  whoHasPassed,
 } from "../compose";
 
 const students = [
   { name: "Ala Makota", note: 6 },
   { name: "Greg Mighty", note: 5 },
-  { name: "Kent Clerk", note: 6 },
+  { name: "Kent Clerk", note: 1 },
   { name: "Klara Kukaracza", note: 3 },
   { name: "Tod Toddler", note: 1 },
 ];
@@ -23,7 +24,7 @@ describe("compose", () => {
   });
 
   it("#3 average note", () => {
-    expect(averageNote(students)).toBe(4.2);
+    expect(averageNote(students)).toBe(3.2);
   });
 
   it.skip("#4 sanitizeNames", () => {
@@ -36,5 +37,10 @@ Array [
   "tod_toddler",
 ]
 `);
+  });
+  it("#5 whoHasPassed", () => {
+    expect(whoHasPassed(students)).toBe(
+      "Ala Makota, Greg Mighty, Klara Kukaracza"
+    );
   });
 });

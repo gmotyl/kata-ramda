@@ -63,3 +63,16 @@ export const sanitizeNames = R.map(
     R.prop("name")
   )
 );
+
+// #########################################################################
+// # 5
+// #########################################################################
+// # Refactor whoHasPassed with compose
+// #########################################################################
+
+export const whoHasPassed = function (students: Student[]) {
+  const passCondition = (s: Student) => s.note > 1;
+  const passedStudents = R.filter((s) => passCondition(s), students);
+
+  return passedStudents.map((s) => R.prop("name", s)).join(", ");
+};
