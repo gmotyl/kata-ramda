@@ -43,3 +43,17 @@ export var averageNote = R.compose<Student[], number[], number>(
   _average,
   R.map(R.prop("note"))
 );
+
+// #########################################################################
+// # 4
+// #########################################################################
+// # unskip test '#4 sanitizeNames' in __tests__/compose.tets.ts
+// #########################################################################
+// # Write a function: sanitizeNames() using compose that returns
+// # a list of lowercase and underscored names:
+// # e.g: sanitizeNames(["Hello World"]) //=> ["hello_world"].
+// #########################################################################
+
+const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sanitize
+
+export const sanitizeNames = undefined;
