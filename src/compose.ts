@@ -12,7 +12,8 @@ type Student = {
   note: number;
 };
 
-export const lastNote = R.compose<Student[], Student, number>(
-  R.prop("note"),
-  R.last
-);
+export const lastNote = (students: Student[]) => {
+  const lastElement = R.last(students);
+
+  return R.prop("note", lastElement);
+};
