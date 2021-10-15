@@ -36,12 +36,10 @@ export const firstStudentName = R.compose<Student[], Student, string>(
 // # Use the helper function _average to refactor averageNote as a composition
 // #########################################################################
 const _average = function (xs: number[]) {
-  return R.reduce<number, number>(R.add, 0, xs) / xs.length;
-}; // <- leave be
-
-export var averageNote = function (students: Student[]) {
-  var notes = R.map(function (s) {
-    return s.note;
-  }, students);
-  return _average(notes);
+  return R.reduce<number, number>(R.add, 0, xs) / xs.length; // <- leave be
 };
+
+export var averageNote = R.compose<Student[], number[], number>(
+  _average,
+  R.map(R.prop("note"))
+);
