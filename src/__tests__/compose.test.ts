@@ -1,4 +1,9 @@
-import { averageNote, firstStudentName, lastNote } from "../compose";
+import {
+  averageNote,
+  firstStudentName,
+  lastNote,
+  sanitizeNames,
+} from "../compose";
 
 const students = [
   { name: "Ala Makota", note: 6 },
@@ -22,12 +27,14 @@ describe("compose", () => {
   });
 
   it.skip("#4 sanitizeNames", () => {
-    expect(sanitizeNames(students)).toBe([
-      "ala_makota",
-      "greg_mighty",
-      "kent_klerk",
-      "klara_kukaracza",
-      "tod_toddler",
-    ]);
+    expect(sanitizeNames(students)).toMatchInlineSnapshot(`
+Array [
+  "ala_makota",
+  "greg_mighty",
+  "kent_clerk",
+  "klara_kukaracza",
+  "tod_toddler",
+]
+`);
   });
 });
