@@ -7,7 +7,7 @@ import R from "ramda";
 // # Hint: Ramda functions are curried.
 // #########################################################################
 
-type Student = {
+export type Student = {
   name: string;
   note: number;
 };
@@ -17,3 +17,12 @@ export const lastNote = (students: Student[]) => {
 
   return R.prop("note", lastElement);
 };
+
+// #########################################################################
+// # 2
+// #########################################################################
+// # use use R.compose(), R.prop() and R.head()
+// # to retrieve first student's name
+// #########################################################################
+
+export const firstStudentName: Student = undefined;
