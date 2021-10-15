@@ -32,13 +32,13 @@ export const firstStudentName: Student = undefined;
 // #########################################################################
 // # Use the helper function _average to refactor averageNote as a composition
 // #########################################################################
-const _average = function (xs) {
-  return R.reduce(R.add, 0, xs) / xs.length;
+const _average = function (xs: number[]) {
+  return R.reduce<number, number>(R.add, 0, xs) / xs.length;
 }; // <- leave be
 
-var averageNote = function (cars) {
-  var dollar_values = R.map(function (c) {
-    return c.dollar_value;
-  }, cars);
-  return _average(dollar_values);
+export var averageNote = function (students: Student[]) {
+  var notes = R.map(function (s) {
+    return s.note;
+  }, students);
+  return _average(notes);
 };
