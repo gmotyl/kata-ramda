@@ -7,16 +7,15 @@ import R from "ramda";
 // # Hint: Ramda functions are curried.
 // #########################################################################
 
-export type Student = {
+type Student = {
   name: string;
   note: number;
 };
 
-export const lastNote = (students: Student[]) => {
-  const lastElement = R.last(students);
-
-  return R.prop("note", lastElement);
-};
+export const lastNote = R.compose<Student[], Student, number>(
+  R.prop("note"),
+  R.last
+);
 
 // #########################################################################
 // # 2
@@ -26,3 +25,5 @@ export const lastNote = (students: Student[]) => {
 // #########################################################################
 
 export const firstStudentName: Student = undefined;
+
+// comment
