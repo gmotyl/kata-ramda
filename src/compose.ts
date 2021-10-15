@@ -7,7 +7,13 @@ import R from "ramda";
 // # Hint: Ramda functions are curried.
 // #########################################################################
 
-export const lastNote = (students) => {
+type Student = {
+  name: string;
+  note: number;
+};
+type LastNoteFunc = (students: Student[]) => number;
+
+export const lastNote: LastNoteFunc = (students) => {
   const lastElement = R.last(students);
 
   return R.prop("note", lastElement);
