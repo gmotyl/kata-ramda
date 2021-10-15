@@ -56,8 +56,23 @@ export var averageNote = R.compose<Student[], number[], number>(
 
 const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sanitize
 
-export const sanitizeNames = R.compose(
-  R.map(_underscore),
-  R.map(R.toLower),
-  R.map(R.prop("name"))
+export const sanitizeNames = R.map(
+  R.compose<Student, string, string, string>(
+    _underscore,
+    R.toLower,
+    R.prop("name")
+  )
 );
+
+// #########################################################################
+// # 5
+// #########################################################################
+// # Refactor whoHasPassed with compose
+// #########################################################################
+
+export const whoHasPassed = function (students: Student[]) {
+  const passCondition = (s: Student) => s.note > 1;
+  const passedStudents = R.filter((s) => passCondition(s), students);
+
+  return passedStudents.map((s) => R.prop("name", s)).join(", ");
+};
