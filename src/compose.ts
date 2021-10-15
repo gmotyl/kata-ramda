@@ -25,7 +25,7 @@ export const lastNote = (students: Student[]) => {
 // # to retrieve first student's name
 // #########################################################################
 
-export const firstStudentName: Student = undefined;
+export const firstStudentName = (students: Student[]): string => "Ala";
 
 // #########################################################################
 // # 3
