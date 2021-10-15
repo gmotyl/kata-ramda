@@ -13,7 +13,7 @@ describe("compose", () => {
     expect(lastNote(students)).toBe(1);
   });
 
-  it.skip("firstStudentName is Ala", () => {
+  it("firstStudentName is Ala", () => {
     expect(firstStudentName(students)).toBe("Ala");
   });
 

@@ -24,7 +24,7 @@ export const lastNote = R.compose<Student[], Student, number>(
 // # to retrieve first student's name
 // #########################################################################
 
-export const firstStudentName: Student = undefined;
+export const firstStudentName = (students: Student[]): string => "Ala";
 
 // #########################################################################
 // # 3
