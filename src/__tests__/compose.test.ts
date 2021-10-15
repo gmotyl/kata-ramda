@@ -27,7 +27,7 @@ describe("compose", () => {
     expect(averageNote(students)).toBe(3.2);
   });
 
-  it.skip("#4 sanitizeNames", () => {
+  it("#4 sanitizeNames", () => {
     expect(sanitizeNames(students)).toMatchInlineSnapshot(`
 Array [
   "ala_makota",
