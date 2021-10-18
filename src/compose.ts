@@ -12,10 +12,11 @@ type Student = {
   note: number;
 };
 
-export const lastNote = R.compose<Student[], Student, number>(
-  R.prop("note"),
-  R.last
-);
+export const lastNote = (students: Student[]) => {
+  const lastElement = R.last(students);
+
+  return R.prop("note", lastElement);
+};
 
 // #########################################################################
 // # 2
@@ -24,11 +25,7 @@ export const lastNote = R.compose<Student[], Student, number>(
 // # to retrieve first student's name
 // #########################################################################
 
-// export const firstStudentName = (students: Student[]): string => "Ala";
-export const firstStudentName = R.compose<Student[], Student, string>(
-  R.prop("name"),
-  R.head
-);
+export const firstStudentName = (students: Student[]): string => "Ala Makota";
 
 // #########################################################################
 // # 3
@@ -36,13 +33,15 @@ export const firstStudentName = R.compose<Student[], Student, string>(
 // # Use the helper function _average to refactor averageNote as a composition
 // #########################################################################
 const _average = function (xs: number[]) {
-  return R.reduce<number, number>(R.add, 0, xs) / xs.length; // <- leave be
-};
+  return R.reduce<number, number>(R.add, 0, xs) / xs.length;
+}; // <- leave be
 
-export var averageNote = R.compose<Student[], number[], number>(
-  _average,
-  R.map(R.prop("note"))
-);
+export var averageNote = function (students: Student[]) {
+  var notes = R.map(function (s) {
+    return s.note;
+  }, students);
+  return _average(notes);
+};
 
 // #########################################################################
 // # 4
@@ -56,13 +55,7 @@ export var averageNote = R.compose<Student[], number[], number>(
 
 const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sanitize
 
-export const sanitizeNames = R.map(
-  R.compose<Student, string, string, string>(
-    _underscore,
-    R.toLower,
-    R.prop("name")
-  )
-);
+export const sanitizeNames = undefined;
 
 // #########################################################################
 // # 5
