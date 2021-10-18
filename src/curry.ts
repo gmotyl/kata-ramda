@@ -10,12 +10,11 @@ export const curry = undefined;
 // #########################################################################
 // # 2
 // #########################################################################
-// # (using curry) implement getOdds that takes array of numbers
-// # and returns array of odd numbers
+// # fix filter function to make getOdds work as expected
 // #########################################################################
 
 const modulo = curry((x, y) => y % x);
 const isOdd = modulo(2);
-const filter = curry((f, xs: []) => xs.filter(f));
+const filter = curry((xs, f) => xs.filter(f));
 
-export const getOdds = undefined;
+export const getOdds = filter(isOdd);
