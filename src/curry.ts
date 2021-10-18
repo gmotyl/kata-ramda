@@ -6,3 +6,16 @@
 // #########################################################################
 
 export const curry = (f) => (x) => (y) => f(x, y);
+
+// #########################################################################
+// # 2
+// #########################################################################
+// # (using curry) implement getOdds that takes array of numbers
+// # and returns array of odd numbers
+// #########################################################################
+
+const modulo = curry((x, y) => y % x);
+const isOdd = modulo(2);
+const filter = curry((f, xs: []) => xs.filter(f));
+
+export const getOdds = filter(isOdd);
