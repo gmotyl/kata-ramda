@@ -5,4 +5,4 @@
 // # and returns a function which takes two parameters one at a time
 // #########################################################################
 
-export const curry = undefined;
+export const curry = (f) => (x) => (y) => f(x, y);
