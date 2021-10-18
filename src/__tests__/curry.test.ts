@@ -1,7 +1,7 @@
 import { curry, getOdds } from "../curry";
 
 describe("curry", () => {
-  it("should curry two params", () => {
+  it.skip("should curry two params", () => {
     const add = (x, y) => x + y;
     const curriedAdd = curry(add);
     const add2 = curriedAdd(2);
@@ -11,7 +11,7 @@ describe("curry", () => {
     expect(add7(100)).toBe(107);
   });
 
-  it("shuld return odd numbers", () => {
+  it.skip("shuld return odd numbers", () => {
     expect(getOdds([1, 2, 3, 4, 5])).toEqual([1, 3, 5]);
   });
 });
