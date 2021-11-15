@@ -68,6 +68,15 @@ export var averageNote = R.compose<Student[], number[], number>(
 
 const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sanitize
 
+// phase 1
+// export const sanitizeNames = 
+//   R.compose<Student[], string[], string[], string[]>(
+//     R.map(_underscore),
+//     R.map(R.toLower),
+//     R.map(R.prop("name"))
+//   )
+
+// final solution
 export const sanitizeNames = R.map(
   R.compose<Student, string, string, string>(
     _underscore,
