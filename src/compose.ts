@@ -1,6 +1,18 @@
 import R from "ramda";
 
 // #########################################################################
+// # 0 - Intro
+// #########################################################################
+const compose = (f, g) => x => f(g(x))
+
+// currry plays well with composition, as it helps to make any fn into unary function
+const concat = R.curry((y: string, x: string) => x + y);
+const toUpper = (s: string) => s.toUpperCase()
+
+const shout = compose(concat('!'), toUpper);
+console.log(shout('Ala ma kota'));
+
+// #########################################################################
 // # 1
 // #########################################################################
 // # use R.compose() to refactor lastNote
