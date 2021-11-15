@@ -32,9 +32,7 @@ export const getOdds = filter(isOdd);
 
 const split = R.curry((delimiter: string, str: string) => str.split(delimiter));
 
-export const words = function (str: string) {
-  return split(" ", str);
-};
+export const words = split(" ");
 
 // #########################################################################
 // # 4
@@ -44,7 +42,7 @@ export const words = function (str: string) {
 // # refactor it to simpler form and notice inferred typings
 // #########################################################################
 
-export const sentences = (xs: string[]) => R.map(words, xs);
+export const sentences = R.map(words);
 
 // #########################################################################
 // # 5
@@ -52,8 +50,4 @@ export const sentences = (xs: string[]) => R.map(words, xs);
 // # refactor fiterQs to remove noise
 // #########################################################################
 
-export const filterQs = function (xs: string[]) {
-  return R.filter(function (x) {
-    return R.test(/q/gi, x);
-  }, xs);
-};
+export const filterQs = R.filter(R.test(/q/gi));
