@@ -76,6 +76,11 @@ const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sa
 //     R.map(R.prop("name"))
 //   )
 
+// 1. since map = curry((f: , x) => x.map(f))
+// 2. compose(map(f), map(g)) == map(compose(f, g)) -- category theory explains it (only if f, and g are functions!!)
+// compose(map(f), map(g))  -- many looping
+//  map(compose(f, g)) -- one loop
+
 // final solution
 export const sanitizeNames = R.map(
   R.compose<Student, string, string, string>(
