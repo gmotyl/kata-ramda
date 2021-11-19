@@ -101,8 +101,58 @@ export const sanitizeNames = R.map(
 
 const passCondition = (s: Student) => s.note > 1;
 
-export const whoHasPassed = R.compose<Student[], Student[], string[], string>(
-  R.join(", "),
+// 1:
+// export const whoHasPassed = R.compose<Student[], Student[], string[], string>(
+//   R.join(", "),
+//   R.map(R.prop("name")),
+//   R.filter(passCondition)
+// );
+
+// 2: Solution
+
+const passedNames0 = R.compose<Student[], Student[], string[]>(
   R.map(R.prop("name")),
   R.filter(passCondition)
-);
+)
+
+export const whoHasPassed0 = R.compose(
+  R.join(", "), passedNames0
+)
+
+
+// #########################################################################
+// # BONUS : Transducers
+// #########################################################################
+// # map and filter are transformers
+// # According to the Ramda documentation, 
+// # a transducer is “a function that accepts a transformer 
+// # and returns a transformer and can be composed directly.” 
+// #
+// # A transducer takes an object (like array) and iterates through each value, 
+// # manipulating them with a composition of transformer functions. 
+// #########################################################################
+// # Refactor #5 solution to map and filter in one loop
+// #########################################################################
+// # hint: use R.into or implement filterMap
+// #########################################################################
+// # hint: if you stuck refer to Ramda's author answer on StackOverflow 
+// # here:
+// # https://stackoverflow.com/questions/49732081/ramda-map-and-filter-in-one-loop
+// #########################################################################
+
+
+// filterMap solution:
+// const filterMap = R.curry((f, m, data) => R.reduce((a, i) => f(i) ? R.append(m(i), a) : a, [], data))
+// export const passedNames = filterMap(passCondition, R.prop("name"))
+
+// export const whoHasPassed = R.compose(
+//   R.join(", "), passedNames
+// )
+
+// transducer solution:
+export const passedNames = xs =>  R.into<Student[], string[]>([], compose(R.filter(passCondition), R.map(R.prop("name"))), xs);
+
+
+export const whoHasPassed = R.compose(
+  R.join(", "), passedNames
+)
