@@ -3,14 +3,14 @@ import R from "ramda";
 // #########################################################################
 // # 0 - Intro
 // #########################################################################
-const compose = (f, g) => x => f(g(x))
+const compose = (f, g) => (x) => f(g(x));
 
 // currry plays well with composition, as it helps to make any fn into unary function
 const concat = R.curry((y: string, x: string) => x + y);
-const toUpper = (s: string) => s.toUpperCase()
+const toUpper = (s: string) => s.toUpperCase();
 
-const shout = compose(concat('!'), toUpper);
-console.log(shout('Ala ma kota'));
+const shout = compose(concat("!"), toUpper);
+console.log(shout("Ala ma kota"));
 
 // #########################################################################
 // # 1
@@ -69,7 +69,7 @@ export var averageNote = R.compose<Student[], number[], number>(
 const _underscore = R.replace(/\W+/g, "_"); //<-- leave this alone and use to sanitize
 
 // phase 1
-// export const sanitizeNames = 
+// export const sanitizeNames =
 //   R.compose<Student[], string[], string[], string[]>(
 //     R.map(_underscore),
 //     R.map(R.toLower),
@@ -113,33 +113,29 @@ const passCondition = (s: Student) => s.note > 1;
 const passedNames0 = R.compose<Student[], Student[], string[]>(
   R.map(R.prop("name")),
   R.filter(passCondition)
-)
+);
 
-export const whoHasPassed0 = R.compose(
-  R.join(", "), passedNames0
-)
-
+export const whoHasPassed0 = R.compose(R.join(", "), passedNames0);
 
 // #########################################################################
 // # BONUS : Transducers
 // #########################################################################
 // # map and filter are transformers
-// # According to the Ramda documentation, 
-// # a transducer is “a function that accepts a transformer 
-// # and returns a transformer and can be composed directly.” 
+// # According to the Ramda documentation,
+// # a transducer is “a function that accepts a transformer
+// # and returns a transformer and can be composed directly.”
 // #
-// # A transducer takes an object (like array) and iterates through each value, 
-// # manipulating them with a composition of transformer functions. 
+// # A transducer takes an object (like array) and iterates through each value,
+// # manipulating them with a composition of transformer functions.
 // #########################################################################
 // # Refactor #5 solution to map and filter in one loop
 // #########################################################################
 // # hint: use R.into or implement filterMap
 // #########################################################################
-// # hint: if you stuck refer to Ramda's author answer on StackOverflow 
+// # hint: if you stuck refer to Ramda's author answer on StackOverflow
 // # here:
 // # https://stackoverflow.com/questions/49732081/ramda-map-and-filter-in-one-loop
 // #########################################################################
-
 
 // filterMap solution:
 // const filterMap = R.curry((f, m, data) => R.reduce((a, i) => f(i) ? R.append(m(i), a) : a, [], data))
@@ -150,9 +146,11 @@ export const whoHasPassed0 = R.compose(
 // )
 
 // transducer solution:
-export const passedNames = xs =>  R.into<Student[], string[]>([], compose(R.filter(passCondition), R.map(R.prop("name"))), xs);
+export const passedNames = (xs) =>
+  R.into<Student[], string[]>(
+    [],
+    compose(R.filter(passCondition), R.map(R.prop("name"))),
+    xs
+  );
 
-
-export const whoHasPassed = R.compose(
-  R.join(", "), passedNames
-)
+export const whoHasPassed = R.compose(R.join(", "), passedNames);
