@@ -13,7 +13,7 @@ git clone git@github.com:gom3s/kata-ramda.git
 install dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 ## Run tests
