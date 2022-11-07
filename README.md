@@ -3,6 +3,8 @@
 Code kata for ramda, these are my notes based mostyl on Biran Lonsedorf FrontendMasters course, adopted to TypeScript
 https://frontendmasters.com/courses/hardcore-js-v2
 
+testing :)
+
 ## Learn
 
 - https://www.youtube.com/watch?v=AvgwKjTPMmM
